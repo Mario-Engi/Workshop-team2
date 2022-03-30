@@ -1,0 +1,24 @@
+---
+spring:
+  config.activate.on-profile: default
+cds:
+  datasource:
+    auto-config.enabled: false
+---
+spring:
+  profiles: test
+cds:
+  security:
+    mock:
+      users:
+        - name: employee
+          password: employee
+          tenant: dedicated
+          roles:
+            - client
+        - name: manager
+          password: manager
+          tenant: dedicated
+          roles:
+            - supervisor
+
