@@ -3,15 +3,98 @@
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core"
+    xmlns:fb="sap.ui.comp.filterbar"
 >
-    <Shell id="shell">
+
+   <Shell id="shell">
         <App id="app">
-            <pages>
-            <!-- jajj-->
-                <Page id="page" title="{i18n>title}">
-                    <content />
-                </Page>
-            </pages>
+           <f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}">
+            <!-- DynamicPage Title -->
+            <f:title>
+                <f:DynamicPageTitle>
+                        <f:heading>
+
+                            <Title text="Car Sharing" textAlign="Left" titleStyle="Auto"/>
+
+                        </f:heading>
+                </f:DynamicPageTitle>
+            </f:title>
+
+            <f:header>
+                <f:DynamicPageHeader pinnable="true">
+                <f:content>
+                        <!--<fb:FilterBar id="filterbar" search="onSearch" showGoOnFB="true" showClearOnFB="true">
+                            <fb:filterGroupItems>
+                                    <fb:FilterGroupItem name="A" label="{i18n>Titolo}" groupName="A" visibleInFilterBar="true">
+                                        <fb:control>
+                                            <Input type="Text" id="titolo"/>    
+                                        </fb:control>               
+                                    </fb:FilterGroupItem>   
+                                    <fb:FilterGroupItem name="B" label="{i18n>Genere}" groupName="B" visibleInFilterBar="true">            
+                                <fb:control>
+                        <Select id="inputGenre" selectedKey="">
+                            <core:Item key="0" text=""/>
+                            <core:Item key="1" text="Mystery"/>
+                            <core:Item key="2" text="Fiction"/>
+                            <core:Item key="3" text="Drama"/>
+                            <core:Item key="4" text="Fantasy"/>
+                            <core:Item key="5" text="Comedy"/>
+                            <core:Item key="6" text="Horror"/>
+                            <core:Item key="7" text="Parody"/>
+                            <core:Item key="8" text="Romance"/>
+                        </Select>
+                                </fb:control>
+                            </fb:FilterGroupItem>  
+                            </fb:filterGroupItems>
+                        </fb:FilterBar> -->
+                    </f:content>
+                </f:DynamicPageHeader>      
+            </f:header>
+            <f:content>
+            <IconTabBar expanded="false" class="sapUiResponsiveContentPadding" select="onClick" >
+                <items>
+                 <IconTabFilter id="TabCars" design="Vertical" icon="sap-icon://car-rental" text="{i18n>Cars}">
+
+                    <fb:FilterBar id="filterbar" search="onSearchFilter" showGoOnFB="true">
+                            <fb:filterGroupItems>
+                                    <fb:FilterGroupItem name="A" label="{i18n>Brand}" groupName="A" visibleInFilterBar="true">
+                                        <fb:control>
+                                            <Input type="Text" id="Brand"/>    
+                                        </fb:control>               
+                                    </fb:FilterGroupItem>   
+                                  <fb:FilterGroupItem name="B" label="{i18n>model}" groupName="B" visibleInFilterBar="true">
+                                        <fb:control>
+                                            <Input type="Text" id="Model"/>    
+                                        </fb:control>               
+                                    </fb:FilterGroupItem>  
+                                   <fb:FilterGroupItem name="C" label="{i18n>available}" groupName="C" visibleInFilterBar="true">            
+                                <fb:control>
+                        <Select id="Available" selectedKey="">
+                            <core:Item key="" text=""/>
+                            <core:Item key="true" text="Disponibile"/>
+                            <core:Item key="false" text="Non Disponibile"/>
+                        </Select>
+                                </fb:control>
+                            </fb:FilterGroupItem>  
+                            </fb:filterGroupItems>
+                        </fb:FilterBar>
+
+                    </IconTabFilter>
+                  <IconTabFilter id="TabRequest" design="Vertical" icon="sap-icon://insurance-car" text="{i18n>Requests}">
+                  </IconTabFilter>
+             </items>
+           </IconTabBar>
+            
+            </f:content>
+            <!-- DynamicPage Footer -->
+
+            <f:footer>
+
+
+            </f:footer>
+        </f:DynamicPage>
         </App>
     </Shell>
 </mvc:View>

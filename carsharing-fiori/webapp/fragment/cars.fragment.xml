@@ -1,0 +1,45 @@
+<core:FragmentDefinition controllerName="carsharingfiori.controller.cars"
+    xmlns="sap.m"
+    xmlns:dnd="sap.ui.core.dnd"
+    xmlns:u="sap.ui.unified"
+    xmlns:core="sap.ui.core">
+
+
+<Table items="{CarsModel>/}">
+<headerToolbar>
+        <OverflowToolbar>
+                <content>
+                <ToolbarSpacer />
+                     <Button icon="sap-icon://add" press="onAddRecord" type="Transparent"/>
+                </content>
+        </OverflowToolbar>
+    </headerToolbar>
+                    <columns>
+						<Column width="auto">
+				            <Label text="{i18n>Brand}" design="Bold" />
+			            </Column>
+                        <Column width="auto">
+				             <Label text="{i18n>license}" design="Bold" />
+			            </Column>
+                        <Column width="auto">
+				            <Label text="{i18n>available}" design="Bold" />
+			            </Column>
+                        <Column width="auto">
+				             <Label text="{i18n>model}" design="Bold" />
+			            </Column>
+					</columns>
+
+					<items>
+						<ColumnListItem
+								vAlign="Middle">
+							<cells>
+								<Text text="{CarsModel>brand}" />  <!--?? sbaglio accesso-->
+                                <Text text="{CarsModel>license_plate}" />
+                                <Text text="{CarsModel>available}" />
+                                <Text text="{CarsModel>price}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+          
+    </core:FragmentDefinition>
