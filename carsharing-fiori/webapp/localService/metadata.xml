@@ -1,0 +1,314 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Namespace="Org.OData.Core.V1" Alias="Core"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="CarSharingService">
+            <EntityType Name="Cars">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="brand" Type="Edm.String" Nullable="false" MaxLength="50"/>
+                <Property Name="license_plate" Type="Edm.String" MaxLength="7"/>
+                <Property Name="available" Type="Edm.Boolean"/>
+                <NavigationProperty Name="requests" Type="Collection(CarSharingService.Requests)" Partner="cars"/>
+            </EntityType>
+            <EntityType Name="Profiles">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" Nullable="false"/>
+                <Property Name="surname" Type="Edm.String" Nullable="false"/>
+                <Property Name="age" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="telephon" Type="Edm.Int32"/>
+                <Property Name="license" Type="Edm.String" Nullable="false"/>
+                <NavigationProperty Name="requests" Type="Collection(CarSharingService.Requests)" Partner="profiles"/>
+            </EntityType>
+            <EntityType Name="Requests">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="start_date" Type="Edm.Date" Nullable="false"/>
+                <Property Name="end_date" Type="Edm.Date" Nullable="false"/>
+                <Property Name="status" Type="Edm.String"/>
+                <Property Name="hours" Type="Edm.Int32"/>
+                <Property Name="cars_ID" Type="Edm.Guid"/>
+                <Property Name="profiles_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="cars" Type="CarSharingService.Cars" Partner="requests">
+                    <ReferentialConstraint Property="cars_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <NavigationProperty Name="profiles" Type="CarSharingService.Profiles" Partner="requests">
+                    <ReferentialConstraint Property="profiles_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Cars" EntityType="CarSharingService.Cars">
+                    <NavigationPropertyBinding Path="requests" Target="Requests"/>
+                </EntitySet>
+                <EntitySet Name="Profiles" EntityType="CarSharingService.Profiles">
+                    <NavigationPropertyBinding Path="requests" Target="Requests"/>
+                </EntitySet>
+                <EntitySet Name="Requests" EntityType="CarSharingService.Requests">
+                    <NavigationPropertyBinding Path="cars" Target="Cars"/>
+                    <NavigationPropertyBinding Path="profiles" Target="Profiles"/>
+                </EntitySet>
+            </EntityContainer>
+            <Annotations Target="CarSharingService.Cars/createdAt">
+                <Annotation Term="UI.HiddenFilter">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Immutable">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Computed">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Common.Label">
+                    <String>Created On</String>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarSharingService.Cars/createdBy">
+                <Annotation Term="UI.HiddenFilter">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Immutable">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Computed">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Description">
+                    <String>A user's unique ID</String>
+                </Annotation>
+                <Annotation Term="Common.Label">
+                    <String>Created By</String>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarSharingService.Cars/modifiedAt">
+                <Annotation Term="UI.HiddenFilter">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Computed">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Common.Label">
+                    <String>Changed On</String>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarSharingService.Cars/modifiedBy">
+                <Annotation Term="UI.HiddenFilter">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Computed">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Description">
+                    <String>A user's unique ID</String>
+                </Annotation>
+                <Annotation Term="Common.Label">
+                    <String>Changed By</String>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarSharingService.Cars/brand">
+                <Annotation Term="Common.FieldControl">
+                    <EnumMember>Common.FieldControlType/Mandatory</EnumMember>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarSharingService.Profiles/createdAt">
+                <Annotation Term="UI.HiddenFilter">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Immutable">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Computed">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Common.Label">
+                    <String>Created On</String>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarSharingService.Profiles/createdBy">
+                <Annotation Term="UI.HiddenFilter">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Immutable">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Computed">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Description">
+                    <String>A user's unique ID</String>
+                </Annotation>
+                <Annotation Term="Common.Label">
+                    <String>Created By</String>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarSharingService.Profiles/modifiedAt">
+                <Annotation Term="UI.HiddenFilter">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Computed">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Common.Label">
+                    <String>Changed On</String>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarSharingService.Profiles/modifiedBy">
+                <Annotation Term="UI.HiddenFilter">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Computed">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Description">
+                    <String>A user's unique ID</String>
+                </Annotation>
+                <Annotation Term="Common.Label">
+                    <String>Changed By</String>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarSharingService.Profiles/name">
+                <Annotation Term="Common.FieldControl">
+                    <EnumMember>Common.FieldControlType/Mandatory</EnumMember>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarSharingService.Profiles/surname">
+                <Annotation Term="Common.FieldControl">
+                    <EnumMember>Common.FieldControlType/Mandatory</EnumMember>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarSharingService.Profiles/license">
+                <Annotation Term="Common.FieldControl">
+                    <EnumMember>Common.FieldControlType/Mandatory</EnumMember>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarSharingService.Requests/createdAt">
+                <Annotation Term="UI.HiddenFilter">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Immutable">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Computed">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Common.Label">
+                    <String>Created On</String>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarSharingService.Requests/createdBy">
+                <Annotation Term="UI.HiddenFilter">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Immutable">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Computed">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Description">
+                    <String>A user's unique ID</String>
+                </Annotation>
+                <Annotation Term="Common.Label">
+                    <String>Created By</String>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarSharingService.Requests/modifiedAt">
+                <Annotation Term="UI.HiddenFilter">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Computed">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Common.Label">
+                    <String>Changed On</String>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarSharingService.Requests/modifiedBy">
+                <Annotation Term="UI.HiddenFilter">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Computed">
+                    <Bool>true</Bool>
+                </Annotation>
+                <Annotation Term="Core.Description">
+                    <String>A user's unique ID</String>
+                </Annotation>
+                <Annotation Term="Common.Label">
+                    <String>Changed By</String>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarSharingService.Requests/start_date">
+                <Annotation Term="Common.FieldControl">
+                    <EnumMember>Common.FieldControlType/Mandatory</EnumMember>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarSharingService.Requests/end_date">
+                <Annotation Term="Common.FieldControl">
+                    <EnumMember>Common.FieldControlType/Mandatory</EnumMember>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="CarSharingService.Requests/status">
+                <Annotation Term="Common.FieldControl">
+                    <EnumMember>Common.FieldControlType/Mandatory</EnumMember>
+                </Annotation>
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <PropertyValue Property="Value">
+                                <String>Cancelled</String>
+                            </PropertyValue>
+                            <Annotation Term="Core.SymbolicName">
+                                <String>Cancelled</String>
+                            </Annotation>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <PropertyValue Property="Value">
+                                <String>Sent</String>
+                            </PropertyValue>
+                            <Annotation Term="Core.SymbolicName">
+                                <String>Sent</String>
+                            </Annotation>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <PropertyValue Property="Value">
+                                <String>Approved</String>
+                            </PropertyValue>
+                            <Annotation Term="Core.SymbolicName">
+                                <String>Approved</String>
+                            </Annotation>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
