@@ -1,0 +1,63 @@
+<core:FragmentDefinition controllerName="carsharingfiori.controller.storicoPrenotazioni"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"  
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:dnd="sap.ui.core.dnd"
+    xmlns:u="sap.ui.unified">
+            
+                <Table items="{RequestsModel>/}" includeItemInSelection="true" selectionChange="onselectionChange">
+
+                    <headerToolbar>
+					<OverflowToolbar id="otbSubheader">
+						<Title text="" />
+						<ToolbarSpacer />
+						<Button id="editButton" text="Edit" type="Transparent"
+							press="onEdit" />
+					</OverflowToolbar>
+				</headerToolbar>
+
+                    <columns>
+                        <Column width="auto">
+                            <Label text="{i18n>RequestID}" design="Bold" />
+                        </Column>
+                        <Column width="auto">
+                             <Label text="{i18n>InitialDate}" design="Bold" />
+                        </Column>
+                        <Column width="auto">
+                            <Label text="{i18n>EndDate}" design="Bold" />
+                        </Column>
+                        <Column width="auto">
+                             <Label text="{i18n>InitialTime}" design="Bold" />
+                        </Column>
+                        <Column width="auto">
+                            <Label text="{i18n>EndTime}" design="Bold" />
+                        </Column>
+                        <Column width="auto">
+                             <Label text="{i18n>CarID}" design="Bold" />
+                        </Column>
+                        <Column width="auto">
+                            <Label text="{i18n>EmployeeID}" design="Bold" />
+                        </Column>
+                        <Column width="auto">
+                            <Label text="{i18n>statusReq}" design="Bold" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem
+                                vAlign="Middle">
+                            <cells>
+                                <Text text="{RequestsModel>ID}" />
+                                <Text text="{RequestsModel>start_date}" />
+                                <Text text="{RequestsModel>end_date}" />
+                                <Text text="{RequestsModel>start_date}" />
+                                <Text text="{RequestsModel>end_date}" />
+                                <Text text="{RequestsModel>cars_ID}" />
+                                <Text text="{RequestsModel>profiles_ID}" />
+                                <Text text="{RequestsModel>status}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+
+    </core:FragmentDefinition>

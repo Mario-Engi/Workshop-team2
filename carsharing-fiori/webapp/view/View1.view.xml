@@ -83,6 +83,25 @@
 
                     </IconTabFilter>
                   <IconTabFilter id="TabRequest" design="Vertical" icon="sap-icon://insurance-car" text="{i18n>Requests}">
+                   <fb:FilterBar id="filterBarReq" search="onSearchFilterReq" showGoOnFB="true">
+                            <fb:filterGroupItems>
+                                    <fb:FilterGroupItem name="U" label="{i18n>EmployeeID}" groupName="U" visibleInFilterBar="true">
+                                        <fb:control>
+                                            <Input type="Text" id="EmpID"/>    
+                                        </fb:control>               
+                                    </fb:FilterGroupItem>   
+                                    <fb:FilterGroupItem name="T" label="{i18n>RequestID}" groupName="T" visibleInFilterBar="true">            
+                                <fb:control>
+                                    <Input type="Text" id="ReqID"/>
+                                </fb:control>
+                            </fb:FilterGroupItem>  
+                            <fb:FilterGroupItem name="F" label="{i18n>carsLicensePlate}" groupName="F" visibleInFilterBar="true">            
+                                <fb:control>
+                                    <Input type="Text" id="carsPlate"/>
+                                </fb:control>
+                            </fb:FilterGroupItem>  
+                            </fb:filterGroupItems>
+                        </fb:FilterBar>
                   </IconTabFilter>
              </items>
            </IconTabBar>
