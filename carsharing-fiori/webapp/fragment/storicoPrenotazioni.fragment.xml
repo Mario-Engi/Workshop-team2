@@ -7,40 +7,39 @@
     xmlns:u="sap.ui.unified">
             
                 <Table items="{RequestsModel>/}" includeItemInSelection="true" selectionChange="onselectionChange">
-
-                    <headerToolbar>
-					<OverflowToolbar id="otbSubheader">
-						<Title text="" />
-						<ToolbarSpacer />
-						<Button id="editButton" text="Edit" type="Transparent"
-							press="onEdit" />
-					</OverflowToolbar>
-				</headerToolbar>
-
                     <columns>
-                        <Column width="auto">
+                        <Column width="25%">
                             <Label text="{i18n>RequestID}" design="Bold" />
                         </Column>
-                        <Column width="auto">
+                        <Column width="20%">
                              <Label text="{i18n>InitialDate}" design="Bold" />
                         </Column>
-                        <Column width="auto">
+                        <Column width="20%">
                             <Label text="{i18n>EndDate}" design="Bold" />
                         </Column>
-                        <Column width="auto">
+                        <Column width="20%">
                              <Label text="{i18n>InitialTime}" design="Bold" />
                         </Column>
-                        <Column width="auto">
+                        <Column width="20%">
                             <Label text="{i18n>EndTime}" design="Bold" />
                         </Column>
-                        <Column width="auto">
+                        <Column width="20%">
                              <Label text="{i18n>CarID}" design="Bold" />
                         </Column>
-                        <Column width="auto">
+                        <Column width="20%">
                             <Label text="{i18n>EmployeeID}" design="Bold" />
                         </Column>
-                        <Column width="auto">
+                        <Column width="20%">
                             <Label text="{i18n>StatusReq}" design="Bold" />
+                        </Column>
+                        <Column width="8%">
+                            <Text text="" />
+                        </Column>
+                        <Column width="8%">
+                            <Text text="" />
+                        </Column>
+                        <Column width="8%">
+                            <Text text="" />
                         </Column>
                         <Column width="8%">
                             <Text text="" />
@@ -50,13 +49,20 @@
                         <ColumnListItem
                                 vAlign="Middle">
                             <cells>
-                                <Text text="{RequestsModel>ID}" />
-                                <Text text="{RequestsModel>start_date}" />
-                                <Text text="{RequestsModel>end_date}" />
-                                <Text text="{RequestsModel>cars_ID}" />
-                                <Text text="{RequestsModel>profiles_badge}" />
-                                <Text text="{RequestsModel>status}" />
-                                <Button icon="sap-icon://accept" tooltip="{i18n>}" press="onAcceptRecord" type="Emphasized" />
+                            
+                                <Text id="ReqID" text="{RequestsModel>ID}" />
+                                <Text id="ReqStartDate" text="{RequestsModel>start_date}" />
+                                <Text id="ReqEndDate" text="{RequestsModel>end_date}" />
+                                <Text id="" text="{RequestsModel>start_hours}" />
+                                <Text id="" text="{RequestsModel>end_hours}" />
+                                <Text id="ReqCarLicensePlate" text="{RequestsModel>cars_license_plate}" />
+                                <Text id="ReqProfilesBadge" text="{RequestsModel>profiles_badge}" />
+                                <Text id="ReqStatus" text="{RequestsModel>status}" />
+                                
+                            <Button id="editbutton" icon="sap-icon://edit" tooltip="{i18n>EditButton}" press="onEditRecord" type="Emphasized" />
+                            <Button icon="sap-icon://delete" tooltip="{i18n>DeleteButton}" press="onDeleteRecord" type="Emphasized" />
+                            <Button icon="sap-icon://accept" tooltip="{i18n>AcceptButton}" press="onAcceptRecord" type="Emphasized" />
+                            <Button icon="sap-icon://decline" tooltip="{i18n>DeclineButton}" press="onDeclineRecord" type="Emphasized" />
 
                             </cells>
                         </ColumnListItem>

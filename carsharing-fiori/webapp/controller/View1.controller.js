@@ -68,7 +68,7 @@ sap.ui.define([
                 filter = "?$filter=available eq '" + sAvailable + "'" ;
                 } else if(!sBrand && sModel && !sAvailable){
                     filter = "?$filter=model eq '" + sModel + "'" ;
-                 }else if(sBrand && sModel && !sAvailable){
+                 }else if(sBrand && !sModel && sAvailable){
                     filter = "?$filter=brand eq '" + sBrand + "' and available eq '" + sAvailable + "'";
                         } else {
                     filter = ""; 
@@ -78,13 +78,13 @@ sap.ui.define([
                 this.getCarsDB(filter);  //??
             },
 
-            getRequestsDB: function(filter){
+            getRequestsDB: function(filterReq){
                 var oMdl = new sap.ui.model.json.JSONModel(); 
                 var that = this;
                 var aData = jQuery.ajax({
                     type: "GET",
                     contentType: "application/json",
-                    url: "/odata/v4/CarSharingService/Requests" + filter,
+                    url: "/odata/v4/CarSharingService/Requests" + filterReq,
                     dataType: "json",
                     async: false,
                     success: function (data, textStatus, jqXHR) {
@@ -95,25 +95,33 @@ sap.ui.define([
                     }
                 });
                 this.getOwnerComponent().setModel(oMdl, "RequestsModel");
+               // this.getProfilesDB();
         
             },
             onSearchFilterReq: function () {
                 var filterReq;
                 var sEmpID = this.getView().byId("EmpID").getValue();
                 var sReqID = this.getView().byId("ReqID").getValue();
-                if (sEmpID && !sReqID) {
-                    filterReq = "?$filter=profiles_ID eq '" + sEmpID + "'";
-               }else if(!sEmpID && sReqID){
-                   filterReq = "?$filter=ID eq '" + sReqID + "'";
-               }else if(sEmpID && sReqID){
-                       filterReq = "?$filter=profiles_ID eq '" + sEmpID + "' and ID eq '" + sReqID + "'";
-               }
-               else {
-                   filterReq = "";
+                var sCarID = this.getView().byId("CarID").getValue();
+                if (sEmpID && !sReqID && !sCarID) {
+                    filterReq = "?$filter=profiles_badge eq '" + sEmpID + "'";
+               }else if(sEmpID && sReqID && !sCarID){
+                   filterReq = "?$filter=profiles_badge eq '" + sEmpID + "' and ID eq '" + sReqID + "'";
+               }else if(sEmpID && sReqID && sCarID){
+                       filterReq = "?$filter=profiles_badge eq '" + sEmpID + "' and ID eq '" + sReqID + "' and cars_license_plate eq '" + sCarID + "'" ;
+               }else if(!sEmpID && sReqID && sCarID){
+                   filterReq = "?$filter=ID eq '" + sReqID + "' and cars_license_plate eq '" + sCarID + "'" ;
+               }else if(!sEmpID && !sReqID && sCarID){
+               filterReq = "?$filter= cars_license_plate eq'" + sCarID + "'" ;
+               } else if(!sEmpID && sReqID && !sCarID){
+                   filterReq = "?$filter=ID eq '" + sReqID + "'" ;
+                }else if(sEmpID && !sReqID && sCarID){
+                   filterReq = "?$filter=profiles_badge eq '" + sEmpID + "' and cars_license_plate eq '" + sCarID + "'";
+                       } else {
+                   filterReq = ""; 
                }
         
                 this.getRequestsDB(filterReq);
             }
-        
         });
     });

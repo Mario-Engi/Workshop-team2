@@ -1,0 +1,68 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+        <Dialog id="EditRequest" title="Modifica la tua prenotazione"  draggable="true" showHeader="true" titleAlignment="Center" 
+        afterClose="onAfterClose" contentWidth="auto">
+        <f:Form editable="false">
+            <f:layout>
+                <f:ColumnLayout columnsM="2" columnsL="2" columnsXL="2"/>
+            </f:layout>
+            <f:formContainers>
+                <f:FormContainer>
+                <f:FormElement visible="{dialogModel>/GgVisible}">
+                        <f:label>
+                            <Label text="ID Richiesta" required= "false"/>
+                        </f:label>
+                        <f:fields>
+                            <Input id="inputIDReq" class="validateFilter" value="{oSelectedItemBooks>/title}" editable="false"></Input>
+                        </f:fields>
+                    </f:FormElement>
+                    <f:FormElement visible="{dialogModel>/GgVisible}">
+                        <f:label>
+                            <Label text="Data e ora inizio prenotazione" required= "true" />
+                        </f:label>
+                        <f:fields>
+                           <DatePicker  id="inputStartDate" change="handleChange"  displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"/>    
+                           <!-- <DateTimePicker id="inputDateStart"  valueFormat="yyyyMMdd"  placeholder="Start Date"   change="handleChange"   class="sapUiSmallMarginBottom"/> -->
+                        </f:fields>
+                        <f:fields>
+                           <TimePicker id="inputStartHour" valueFormat="HH:mm" displayFormat="HH:mm" placeholder="hh:mm" width="100%" value="00:00"  />                          
+                        </f:fields>
+                    </f:FormElement>
+                    <f:FormElement visible="{dialogModel>/GgVisible}">
+                        <f:label>
+                            <Label text="Data e ora fine prenotazione" required= "true" />
+                        </f:label>
+                        <f:fields>
+                            <DatePicker  id="inputEndDate" change="handleChange" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"/> 
+                            <!-- <DateTimePicker    id="inputDateEnd"  valueFormat="dd/MM/yyyy/HH/mm"   placeholder="End Date"  change="handleChange"   class="sapUiSmallMarginBottom"/>                             -->
+                        </f:fields>
+                        <f:fields>
+                           <TimePicker id="inputEndHour" valueFormat="HH:mm" displayFormat="HH:mm" placeholder="hh:mm" width="100%" value="00:00"  />                    
+                        </f:fields>
+                    </f:FormElement>
+              <!--      <f:FormElement visible="{dialogModel>/GgVisible}">
+                        <f:label>
+                            <Label text="Ore totali" required= "true" />
+                        </f:label>
+                        <f:fields>
+                            <Input id="inputTotHours" class="validateFilter" type="Text" value="{oSelectedItemAuthors>/name}" editable="true"></Input>
+                        </f:fields>
+                    </f:FormElement>  -->
+                    <f:FormElement visible="{dialogModel>/GgVisible}">
+                        <f:label>
+                            <Label text="Targa" required= "true" />
+                        </f:label>
+                        <f:fields>
+                            <Input id="inputLicensePlate" class="validateFilter" type="Text" value="{oSelectedItemAuthors>/name}" editable="false"></Input>
+                        </f:fields>
+                    </f:FormElement>
+                </f:FormContainer>
+            </f:formContainers>
+        </f:Form>
+        <beginButton>
+            <Button text="Save" type="Emphasized" press="onSaveRequest"/>
+        </beginButton>
+        <endButton>
+            <Button text="Close" press="onCloseDialog"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
