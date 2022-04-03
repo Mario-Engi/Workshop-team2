@@ -25,30 +25,6 @@
             <f:header>
                 <f:DynamicPageHeader pinnable="true">
                 <f:content>
-                        <!--<fb:FilterBar id="filterbar" search="onSearch" showGoOnFB="true" showClearOnFB="true">
-                            <fb:filterGroupItems>
-                                    <fb:FilterGroupItem name="A" label="{i18n>Titolo}" groupName="A" visibleInFilterBar="true">
-                                        <fb:control>
-                                            <Input type="Text" id="titolo"/>    
-                                        </fb:control>               
-                                    </fb:FilterGroupItem>   
-                                    <fb:FilterGroupItem name="B" label="{i18n>Genere}" groupName="B" visibleInFilterBar="true">            
-                                <fb:control>
-                        <Select id="inputGenre" selectedKey="">
-                            <core:Item key="0" text=""/>
-                            <core:Item key="1" text="Mystery"/>
-                            <core:Item key="2" text="Fiction"/>
-                            <core:Item key="3" text="Drama"/>
-                            <core:Item key="4" text="Fantasy"/>
-                            <core:Item key="5" text="Comedy"/>
-                            <core:Item key="6" text="Horror"/>
-                            <core:Item key="7" text="Parody"/>
-                            <core:Item key="8" text="Romance"/>
-                        </Select>
-                                </fb:control>
-                            </fb:FilterGroupItem>  
-                            </fb:filterGroupItems>
-                        </fb:FilterBar> -->
                     </f:content>
                 </f:DynamicPageHeader>      
             </f:header>
@@ -57,7 +33,7 @@
                 <items>
                  <IconTabFilter id="TabCars" design="Vertical" icon="sap-icon://car-rental" text="{i18n>Cars}">
 
-                    <fb:FilterBar id="filterbar" search="onSearchFilter" showGoOnFB="true">
+                    <fb:FilterBar id="filterbar" search="onSearchFilterCars" showGoOnFB="true">
                             <fb:filterGroupItems>
                                     <fb:FilterGroupItem name="A" label="{i18n>Brand}" groupName="A" visibleInFilterBar="true">
                                         <fb:control>
@@ -73,8 +49,8 @@
                                 <fb:control>
                         <Select id="Available" selectedKey="">
                             <core:Item key="" text=""/>
-                            <core:Item key="true" text="Disponibile"/>
-                            <core:Item key="false" text="Non Disponibile"/>
+                            <core:Item key="Disponibile" text="Disponibile"/>
+                            <core:Item key="Non Disponibile" text="Non Disponibile"/>
                         </Select>
                                 </fb:control>
                             </fb:FilterGroupItem>  
@@ -97,7 +73,7 @@
                             </fb:FilterGroupItem>  
                             <fb:FilterGroupItem name="F" label="{i18n>carsLicensePlate}" groupName="F" visibleInFilterBar="true">            
                                 <fb:control>
-                                    <Input type="Text" id="carsPlate"/>
+                                    <Input type="Text" id="CarID"/>
                                 </fb:control>
                             </fb:FilterGroupItem>  
                             </fb:filterGroupItems>

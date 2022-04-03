@@ -31,6 +31,9 @@ sap.ui.define([
             getCarsDB: function(filter){
                 var oMdl = new sap.ui.model.json.JSONModel(); 
                 var that = this;
+                if (filter.length == 0){
+                    filter= "?$filter=available eq 'Disponibile'";
+                }
                 var aData = jQuery.ajax({
                     type: "GET",
                     contentType: "application/json",
@@ -47,7 +50,7 @@ sap.ui.define([
                 this.getOwnerComponent().setModel(oMdl, "CarsModel");
         
             },
-            onSearchFilter: function () {
+            onSearchFilterCars: function () {
                 var filter; //sap.ui.getCore().filter
                 var b=0,m=0,a=0;
                 var sBrand = this.getView().byId("Brand").getValue();
@@ -65,7 +68,7 @@ sap.ui.define([
                 filter = "?$filter=available eq '" + sAvailable + "'" ;
                 } else if(!sBrand && sModel && !sAvailable){
                     filter = "?$filter=model eq '" + sModel + "'" ;
-                 }else if(sBrand && !sModel && !sAvailable){
+                 }else if(sBrand && sModel && !sAvailable){
                     filter = "?$filter=brand eq '" + sBrand + "' and available eq '" + sAvailable + "'";
                         } else {
                     filter = ""; 
@@ -111,19 +114,6 @@ sap.ui.define([
         
                 this.getRequestsDB(filterReq);
             }
-             /*onAddRecord: function () {
-                var oFrtController = new newBooking(this.getView(), this);
-                sap.ui.getCore().oView = this.getView();
-                if (!this.pDialog) {
-                    this.pDialog = Fragment.load({
-                        name: "carsharingfiori.fragment.newBooking",
-                        oFrtController
-                    });
-                }
-                this.pDialog.then(function (oDialog) {
-                    oDialog.open();
-                });
-                
-            },*/
+        
         });
     });

@@ -40,7 +40,10 @@
                             <Label text="{i18n>EmployeeID}" design="Bold" />
                         </Column>
                         <Column width="auto">
-                            <Label text="{i18n>statusReq}" design="Bold" />
+                            <Label text="{i18n>StatusReq}" design="Bold" />
+                        </Column>
+                        <Column width="8%">
+                            <Text text="" />
                         </Column>
                     </columns>
                     <items>
@@ -50,11 +53,11 @@
                                 <Text text="{RequestsModel>ID}" />
                                 <Text text="{RequestsModel>start_date}" />
                                 <Text text="{RequestsModel>end_date}" />
-                                <Text text="{RequestsModel>start_date}" />
-                                <Text text="{RequestsModel>end_date}" />
                                 <Text text="{RequestsModel>cars_ID}" />
-                                <Text text="{RequestsModel>profiles_ID}" />
+                                <Text text="{RequestsModel>profiles_badge}" />
                                 <Text text="{RequestsModel>status}" />
+                                <Button icon="sap-icon://accept" tooltip="{i18n>}" press="onAcceptRecord" type="Emphasized" />
+
                             </cells>
                         </ColumnListItem>
                     </items>

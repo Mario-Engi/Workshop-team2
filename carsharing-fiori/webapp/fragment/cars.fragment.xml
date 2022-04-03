@@ -6,14 +6,6 @@
 
 
 <Table items="{CarsModel>/}">
-<headerToolbar>
-        <OverflowToolbar>
-                <content>
-                <ToolbarSpacer />
-                     <Button icon="sap-icon://add" press="onAddRecord" type="Transparent"/>
-                </content>
-        </OverflowToolbar>
-    </headerToolbar>
                     <columns>
 						<Column width="auto">
 				            <Label text="{i18n>Brand}" design="Bold" />
@@ -27,6 +19,15 @@
                         <Column width="auto">
 				             <Label text="{i18n>model}" design="Bold" />
 			            </Column>
+                         <Column width="4%">
+                            <Text text="" />
+                        </Column>
+                        <Column width="4%">
+                            <Text text="" />
+                        </Column>
+                        <Column width="4%">
+                            <Text text="" />
+                        </Column>
 					</columns>
 
 					<items>
@@ -36,7 +37,10 @@
 								<Text text="{CarsModel>brand}" />  <!--?? sbaglio accesso-->
                                 <Text text="{CarsModel>license_plate}" />
                                 <Text text="{CarsModel>available}" />
-                                <Text text="{CarsModel>price}" />
+                                <Text text="{CarsModel>model}" />
+                                <Button icon="sap-icon://add"  press="onAddRecordRequest" type="Emphasized" />
+                                <Button icon="sap-icon://delete"  press="onDeleteRecordCars" type="Emphasized" />
+                                <Button icon="sap-icon://delete"  press="prova" type="Emphasized" />
 							</cells>
 						</ColumnListItem>
 					</items>
