@@ -21,18 +21,18 @@ sap.ui.define([
                         controller: this
                     });
                 }
-                var oBindingContext = oEvent.getSource().getParent().getBindingContext("RequestsModel");
+                var oBindingContext = this.oBindingContex(oEvent);
                 var statusPotential = oBindingContext.getProperty("status");
-                if (statusPotential == "Rifiutata") {
-                    sap.ui.getCore().sMessage = "Non è possibile effettuare la modifica perché la richiesta è stata rifiutata!";
+                if (statusPotential == "Rifiutata" || statusPotential == "Accettata") {
+                    sap.ui.getCore().sMessage = "Non è possibile effettuare la modifica perché la richiesta è già Accettata o Rifiutata!";
                     MessageBox.error(sap.ui.getCore().sMessage);
                     return 0;
                 }
                 sap.ui.getCore().byId("inputIDReq").setValue(oBindingContext.getProperty("ID"));
                 sap.ui.getCore().byId("inputStartDate").setValue(oBindingContext.getProperty("start_date"));
-                sap.ui.getCore().byId("inputStartHour").setValue(oBindingContext.getProperty("start_hour"));
+                sap.ui.getCore().byId("inputStartHour").setValue(oBindingContext.getProperty("start_hours"));
                 sap.ui.getCore().byId("inputEndDate").setValue(oBindingContext.getProperty("end_date"));
-                sap.ui.getCore().byId("inputEndHour").setValue(oBindingContext.getProperty("end_hour"));
+                sap.ui.getCore().byId("inputEndHour").setValue(oBindingContext.getProperty("end_hours"));
                 //  sap.ui.getCore().byId("inputTotHours").setValue(oBindingContext.getProperty("hours"));
                 sap.ui.getCore().byId("inputLicensePlate").setValue(oBindingContext.getProperty("cars_license_plate"));
                 this.pDialog.then(function (oDialog) {
@@ -139,11 +139,24 @@ sap.ui.define([
                 return oEvent.getSource().getParent().getBindingContext("RequestsModel");
             },
             onAcceptRecord: function (oEvent) {
-
                 var oBindingContext = this.oBindingContex(oEvent);
+                var statusPotential = oBindingContext.getProperty("status");
+                if (statusPotential == "Rifiutata") {
+                    sap.ui.getCore().sMessage = "Non è possibile Accettare la Richiesta perchè è stata rifiutata!";
+                    MessageBox.error(sap.ui.getCore().sMessage);
+                    return 0;
+                }
+                
+                //var mario = oEvent.getSource().getParent().getBindingContext("CarsModel");
                 var idRequest = oBindingContext.getProperty("ID");
+               // var hoursPreTotal = mario.getProperty("model");
+                var hoursTotal = hoursPreTotal + Number(oBindingContext.getProperty("hours"));
                 var newRecord = {
-                    status: "Accettata"
+                   // hours_total: hoursTotal,
+                    //requests: [{
+                        status: "Accettata"
+                   // }]
+                    
                 };
                 var aData = jQuery.ajax({
                     type: "PATCH",

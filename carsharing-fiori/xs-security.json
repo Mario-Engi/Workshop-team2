@@ -1,0 +1,32 @@
+{
+    "xsappname": "carsharingfiori",
+    "tenant-mode": "dedicated",
+    "description": "Security profile of called application",
+    "scopes": [
+        {
+            "name": "uaa.user",
+            "description": "UAA"
+        },
+        {
+            "name": "$XSAPPNAME.View",
+            "description": "View Permission"
+        }
+    ],
+    "role-templates": [
+        {
+            "name": "Token_Exchange",
+            "description": "UAA",
+            "scope-references": [
+                "uaa.user"
+            ]
+        },
+        {
+            "name": "Viewer",
+            "description": "Access Public Microservices",
+            "scope-references": [
+                "$XSAPPNAME.View",
+                "uaa.user"
+            ]
+        }
+    ]
+}

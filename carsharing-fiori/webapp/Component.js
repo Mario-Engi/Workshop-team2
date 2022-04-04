@@ -1,8 +1,8 @@
 sap.ui.define([
-        "sap/ui/core/UIComponent",
-        "sap/ui/Device",
-        "carsharingfiori/model/models"
-    ],
+    "sap/ui/core/UIComponent",
+    "sap/ui/Device",
+    "carsharingfiori/model/models"
+],
     function (UIComponent, Device, models) {
         "use strict";
 
@@ -25,6 +25,14 @@ sap.ui.define([
 
                 // set the device model
                 this.setModel(models.createDeviceModel(), "device");
+
+                var oHashObject = new sap.ui.core.routing.HashChanger();
+                var oHash = oHashObject.getHash();
+
+                this.setModel(new sap.ui.model.json.JSONModel({ isResponsabile: oHash.includes("manage") ? true : false }), "isResponsabile");
+
+
+
             }
         });
     }

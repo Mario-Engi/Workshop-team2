@@ -210,43 +210,42 @@ sap.ui.define([
                 });
         },
 
-        prova: function(inizioData,fineData){
-            var oMdl = new sap.ui.model.json.JSONModel(); 
-            var that = this;
-            var aData = jQuery.ajax({
-                type: "GET",
-                contentType: "application/json",
-                url: "/odata/v4/CarSharingService/Requests",
-                dataType: "json",
-                async: false,
-                success: function (data, textStatus, jqXHR) {
-                    oMdl.setData(data.value);
-                },
-                  error: function (error) {
-                    var e = error;
-                }
-            });
-            var oggi = new Date();
-            var elemen = 0;
-             var fineData = new Date("03/04/2022");
-             var inizioData = new Date("02/04/2022");
-             var dayMilli = 1000 * 60 * 60 * 24
-            var dataDifferenza = (fineData - inizioData)/dayMilli;
-            for (let index = 0; index <= dataDifferenza  ; index++) {
-                for (let index = 0; index <= oMdl.oData.length; index++) {
-                    var XS = oMdl.oData[index].start_date;
-                    var XE = oMdl.oData[index].end_date;
+        // prova: function(inizioData,fineData){
+        //     var oMdl = new sap.ui.model.json.JSONModel(); 
+        //     var that = this;
+        //     var aData = jQuery.ajax({
+        //         type: "GET",
+        //         contentType: "application/json",
+        //         url: "/odata/v4/CarSharingService/Requests",
+        //         dataType: "json",
+        //         async: false,
+        //         success: function (data, textStatus, jqXHR) {
+        //             oMdl.setData(data.value);
+        //         },
+        //           error: function (error) {
+        //             var e = error;
+        //         }
+        //     });
+        //     var oggi = new Date();
+        //     var elemen = 0;
+        //      var fineData = new Date("04/05/2022");
+        //      var inizioData = new Date("04/03/2022");
+        //      var dayMilli = 1000 * 60 * 60 *24
+        //     var dataDifferenza = (fineData - inizioData)/dayMilli;
+        //     for (let index = 0; index < dataDifferenza  ; index++) {
+        //         for (let index = 0; index <= oMdl.oData.length; index++) {
+        //             var XS = oMdl.oData[index].start_date;
+        //             var XE = oMdl.oData[index].end_date;
     
-                    var element = array[index];
                     
-                }
+        //         }
                 
-            }
+        //     }
             
-            var oml = oMdl.oData['0'].start_date;
-            //this.getOwnerComponent().setModel(oMdl, "RequestsModel");
+        //     var oml = oMdl.oData['0'].start_date;
+        //     //this.getOwnerComponent().setModel(oMdl, "RequestsModel");
     
-        },
+        // },
 
 
 

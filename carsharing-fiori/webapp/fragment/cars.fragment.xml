@@ -19,15 +19,18 @@
                         <Column width="auto">
 				             <Label text="{i18n>model}" design="Bold" />
 			            </Column>
+                        <Column width="auto">
+				             <Label text="{i18n>hoursTotal}" design="Bold" />
+			            </Column>
                          <Column width="4%">
                             <Text text="" />
                         </Column>
                         <Column width="4%">
                             <Text text="" />
                         </Column>
-                        <Column width="4%">
+                        <!-- <Column width="4%">
                             <Text text="" />
-                        </Column>
+                        </Column> -->
 					</columns>
 
 					<items>
@@ -38,9 +41,10 @@
                                 <Text text="{CarsModel>license_plate}" />
                                 <Text text="{CarsModel>available}" />
                                 <Text text="{CarsModel>model}" />
+                                <Text text="{CarsModel>hours_total}" />
                                 <Button icon="sap-icon://add"  press="onAddRecordRequest" type="Emphasized" />
-                                <Button icon="sap-icon://delete"  press="onDeleteRecordCars" type="Emphasized" />
-                                <Button icon="sap-icon://delete"  press="prova" type="Emphasized" />
+                                <Button visible="{isResponsabile>/isResponsabile}" icon="sap-icon://delete"  press="onDeleteRecordCars" type="Emphasized" />
+                                <!-- <Button icon="sap-icon://delete"  press="prova" type="Emphasized" /> -->
 							</cells>
 						</ColumnListItem>
 					</items>
